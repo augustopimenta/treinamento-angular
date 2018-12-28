@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli"
+      rel="stylesheet"
+    />
+    <title>Treinamento Angular</title>
+    <style>
+      body {
+        font-family: Muli, sans-serif;
+      }
+
+      h1 {
+        color: red;
+      }
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      li strong {
+        display: block;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Treinamento Angular</h1>
+    <h2>Bem vindo ao backend do Treinamento Angular!</h2>
+    <p>
+      Essa pequena aplicação (super simples e praticamente sem validações)
+      <br />
+      foi feita com nodejs e um banco super simples que salva os dados em
+      arquivos JSON.
+    </p>
+    <h4>Autenticação</h4>
+    <ul>
+      <li>
+        <strong>POST /v1/auth/login</strong> - Autentica o usuário e retorna um
+        token para as proximas requisições <br />
+        (usuário padrão está no arquivo database/users.json).
+      </li>
+      <li><strong>POST /v1/auth/register</strong> - Cria um novo usuário.</li>
+      <li>
+        <strong>GET /v1/auth/unique-email</strong> - Verifica se o e-mail
+        informado é unico no sistema.
+      </li>
+    </ul>
+    <h4>Compras <small>(Nescessário enviar token de autenticação)</small></h4>
+    <ul>
+      <li>
+        <strong>GET /v1/purchases</strong> - Lista todas as compras do usuário
+        logado.
+      </li>
+      <li><strong>POST /v1/purchases</strong> - Cria uma nova compra.</li>
+      <li>
+        <strong>POST /v1/purchases/{id}</strong> - Edita um compra existente.
+      </li>
+      <li>
+        <strong>DELETE /v1/purchases/{id}</strong> - Exclui uma compra
+        existente.
+      </li>
+    </ul>
+  </body>
+</html>

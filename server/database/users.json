@@ -1,0 +1,10 @@
+[
+  {
+    "_id": "fe7994fe0e044117acca135137518a20",
+    "name": "Administrador",
+    "email": "admin@admin.com",
+    "password": "admin",
+    "admin": true,
+    "auth_token": "041158aabfd998f0aa4e9dba1b4df2a6f34887b9d685c80422eac76a2524f091"
+  }
+]

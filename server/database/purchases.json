@@ -1,0 +1,42 @@
+[
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2019-01-05",
+    "description": "Salgado do Ragghi",
+    "value": 1,
+    "quantity": 1,
+    "total": 1,
+    "paid": true,
+    "_id": "3ca5d9e83d7b4dc187303d7fff8e93fc"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2019-01-01",
+    "description": "Pão de Queijo",
+    "value": 1.5,
+    "quantity": 2,
+    "total": 3,
+    "paid": true,
+    "_id": "c25ec77b73e041c9af608b7bdf18b4c3"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2019-01-06",
+    "description": "Brownie do Zé",
+    "value": 1,
+    "quantity": 3,
+    "total": 3,
+    "paid": true,
+    "_id": "9e0887c1314b40b88546eff8d252ac00"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2019-01-06",
+    "description": "Pão recheado do Ragghi",
+    "value": 4,
+    "quantity": 1,
+    "total": 4,
+    "paid": true,
+    "_id": "34a100d44b6047f5a898f0ce457e3cb3"
+  }
+]
