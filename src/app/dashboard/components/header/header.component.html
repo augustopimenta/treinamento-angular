@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <div class="banner">
+        <h1>Olá {{ userFirstName }}</h1>
+        <p>De uma olhada em como você gasta <br> dinheiro com comida!</p>
+      </div>
+      <div class="profile">
+        <span>{{ userName }}</span>
+        <div class="photo">
+          <img [src]="userPhoto" alt="Perfil">
+        </div>
+      </div>
+      <i title="Sair" class="fas fa-sign-out-alt exit" (click)="onLogout()"></i>
+    </div>
+  </div>
+</div>

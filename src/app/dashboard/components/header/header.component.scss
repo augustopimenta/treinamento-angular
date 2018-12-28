@@ -1,0 +1,51 @@
+:host {
+  height: 200px;
+  background: #D34758;
+  display: flex;
+  color: #FFF;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+p {
+  color: #EEE;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.col-md {
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+
+.banner {
+  flex-grow: 1;
+}
+
+.profile {
+  flex-grow: 0;
+  flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.photo {
+  background: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-left: 15px;
+
+  img {
+    width: 100%;
+  }
+}
+
+i {
+  font-size: 20px;
+  cursor: pointer;
+}
