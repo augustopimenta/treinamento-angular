@@ -1,0 +1,21 @@
+app-panel {
+  padding: 15px;
+}
+
+table {
+  margin-top: 20px;
+  width: 100%;
+  table-layout: fixed;
+
+  th {
+    font-size: 12px;
+  }
+
+  tbody tr td {
+    padding: 10px 0;
+  }
+}
+
+.paid {
+  color: green;
+}

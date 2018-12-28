@@ -1,8 +1,16 @@
 <app-header userPhoto="https://angular.io/assets/images/logos/angular/angular.svg" userName="Fulano de Tal"></app-header>
 <main class="container">
-  <app-panel header="Título do painel" description="Descrição do painel">
-    <br>
-    <img style="width: 100px" src="https://angular.io/assets/images/logos/angular/angular.svg" alt="">
-    <p>Conteudo do painel</p>
-  </app-panel>
+  <div class="row">
+    <div class="col-9">
+      <app-months-panel [months]="months" [selectedMonthIndex]="selectedMonth"></app-months-panel>
+    </div>
+    <div class="col-3" style="padding-left: 0">
+      <app-total-panel [total]="10" [pending]="5"></app-total-panel>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <app-purchases-panel [purchases]="purchases"></app-purchases-panel>
+    </div>
+  </div>
 </main>

@@ -1,0 +1,19 @@
+app-panel {
+  padding: 15px;
+}
+
+.values {
+  font-size: 15px;
+  padding-top: 15px;
+  display: flex;
+
+  span {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.pending i {
+  color: red;
+}
+

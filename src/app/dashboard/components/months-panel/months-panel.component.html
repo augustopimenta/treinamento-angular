@@ -1,0 +1,7 @@
+<app-panel>
+  <div class="month" [class.active]="selectedMonthIndex === i" *ngFor="let month of months; let i = index" (click)="selectMonth(i)">
+    <span class="name"> {{ month.date | date: 'MMM/yyyy' }} </span>
+    <p class="total"> <strong>Total:</strong> <span> {{ month.total | currency: 'R$' }} </span> </p>
+    <p class="pending"> <strong>Devendo:</strong> <span> {{ month.pending | currency: 'R$' }} </span> </p>
+  </div>
+</app-panel>

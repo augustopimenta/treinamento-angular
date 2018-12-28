@@ -1,0 +1,59 @@
+:host ::ng-deep .content {
+  display: flex;
+}
+
+.month {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.5s;
+  border-radius: 5px;
+  background: white;
+}
+
+.month:hover {
+  .name { color: #D34758; }
+
+  border: 1px solid #D34758;
+}
+
+.month.active {
+  z-index: 10;
+  box-shadow: 2px 2px 2px rgba(211, 71, 88, 0.4);
+  border: 1px solid #D34758;
+  transform: scale(1.05, 1.1);
+
+  .name { color: #D34758; }
+}
+
+.month:not(.active) + .month:before {
+  content: "";
+  height: 50px;
+  width: 1px;
+  background-color: #EEE;
+  position: absolute;
+  margin-left: -20px;
+}
+
+.name {
+  text-align: center;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.total,
+.pending {
+  font-size: 11px;
+  margin: 0;
+}
+
+.total strong,
+.pending strong {
+  width: 50px;
+  display: inline-block;
+  text-align: right;
+}

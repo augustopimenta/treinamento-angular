@@ -1,0 +1,47 @@
+<app-panel header="Minhas Compras" description="Histórico das suas compras">
+  <button (click)="onAdd()" class="btn btn-danger" id="add" header>
+    <i class="fas fa-plus-square"></i>
+    Adicionar
+  </button>
+  <table>
+    <thead>
+      <tr>
+        <th width="130">Data</th>
+        <th>Descrição</th>
+        <th width="70">Qtde</th>
+        <th width="100">Valor Unidade</th>
+        <th width="130">Total</th>
+        <th width="70">Pago?</th>
+        <th width="150">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of purchases">
+        <td> {{ purchase.date | date: 'dd/MM/yyyy' }} </td>
+        <td> {{ purchase.description }} </td>
+        <td> {{ purchase.quantity }} </td>
+        <td> {{ purchase.value | currency: 'R$' }} </td>
+        <td> {{ purchase.total | currency: 'R$' }} </td>
+        <td>
+          <i *ngIf="purchase.paid" class="fas fa-check-circle paid"></i>
+        </td>
+        <td>
+          <div class="btn-group mr-2" role="group">
+            <button (click)="onToggle(purchase)" class="btn btn-secondary btn-sm" id="toggle" title="Sinalizar como paga/não pago">
+              <i class="fas fa-check-circle"></i>
+            </button>
+            <button (click)="onUpdate(purchase)" class="btn btn-secondary btn-sm" id="update" title="Editar Compra">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button (click)="onDelete(purchase)" class="btn btn-danger btn-sm" id="delete" title="Excluir Compra">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr class="empty-message" *ngIf="purchases.length == 0">
+        <td colspan="7"> Nenhuma compra encontrada </td>
+      </tr>
+    </tbody>
+  </table>
+</app-panel>
