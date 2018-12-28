@@ -1,27 +1,90 @@
-# TreinamentoAngular
+# Treinamento Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+Projeto para demonstração das funcionalidades e técnicas de desenvolvimento utilizando Angular (7.0)
 
-## Development server
+## O que faz?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+O sistema é um gerenciador de despesas simples para o mercado interno da empresa (Com pão de queijo, brownie, salgados, etc...), para você saber o quando está gastando com comida!
 
-## Code scaffolding
+## Requisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* NodeJS versão 8 ou superior
 
-## Build
+## Rodando a aplicação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+__Atenção__: Existe uma segunda aplicação no diretório server em NodeJS que é usada como webservice para o front-end que deve ser iniciada junto!
 
-## Running unit tests
+Com a aplicação já clonada em sua maquina:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Instale as dependencias do front-end:
 
-## Running end-to-end tests
+````sh
+npm install
+````
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* Navegue até server/ e instale as dependencias do back-end:
 
-## Further help
+````sh
+npm install
+````
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Navegue até server/ e rode o backend:
+
+````sh
+npm start
+````
+
+* Em um outro terminal e rode o front-end:
+
+````sh
+npm start
+````
+
+## Acessando
+
+Com o front-end e back-end em funcionamento é possível acessar aplicação pela url: 
+
+* Front-end: http://localhost:4200
+* Back-end: http://localhost:8080
+
+## Rodando os testes
+
+A aplicação(front-end) conta com ao menos 80% de cobertura de testes unitários e de componente. Para rodar os testes execute no terminal:
+
+````sh
+npm test
+````
+
+Caso queira rodar os testes com o relatório de cobertura utilize:
+
+````sh
+npm run test:co
+````
+
+## Navegando entre os branches
+
+Conforme o desenvolvimento dessa aplicação vários branchs foram criados em várias etapas.
+Para navegar entre eles e nescessário os seguintes comandos no terminal:
+
+Veja todos os branches:
+````sh
+git branch -a
+````
+
+Navegue para outro branch(Caso não o tenha ainda):
+````sh
+git checkout -b <nome-branch> origin/<nome-branch>
+````
+ 
+Por exemplo:
+````sh
+git checkout -b 0-projeto-limpo origin/0-projeto-limpo
+````
+
+Navegue para outro branch(Já tendo o branch localmente):
+````sh
+git checkout <nome-branch>
+````
+ 
+ 
+:)
