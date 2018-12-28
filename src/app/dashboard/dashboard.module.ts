@@ -6,11 +6,13 @@ import {PanelComponent} from './components/panel/panel.component';
 import { MonthsPanelComponent } from './components/months-panel/months-panel.component';
 import { TotalPanelComponent } from './components/total-panel/total-panel.component';
 import { PurchasesPanelComponent } from './components/purchases-panel/purchases-panel.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [ HomeComponent, HeaderComponent, PanelComponent, MonthsPanelComponent, TotalPanelComponent, PurchasesPanelComponent ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [ HomeComponent ]
 })

@@ -7,6 +7,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 import {registerLocaleData} from '@angular/common';
 import locale from '@angular/common/locales/pt';
+import {AuthModule} from './auth/auth.module';
 
 registerLocaleData(locale);
 
@@ -17,6 +18,7 @@ registerLocaleData(locale);
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthModule,
     DashboardModule
   ],
   providers: [
