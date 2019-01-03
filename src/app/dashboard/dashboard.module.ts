@@ -7,9 +7,18 @@ import { MonthsPanelComponent } from './components/months-panel/months-panel.com
 import { TotalPanelComponent } from './components/total-panel/total-panel.component';
 import { PurchasesPanelComponent } from './components/purchases-panel/purchases-panel.component';
 import {RouterModule} from '@angular/router';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
-  declarations: [ HomeComponent, HeaderComponent, PanelComponent, MonthsPanelComponent, TotalPanelComponent, PurchasesPanelComponent ],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    PanelComponent,
+    MonthsPanelComponent,
+    TotalPanelComponent,
+    PurchasesPanelComponent,
+    LoadingComponent
+  ],
   imports: [
     CommonModule,
     RouterModule
