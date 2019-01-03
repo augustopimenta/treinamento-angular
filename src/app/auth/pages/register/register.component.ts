@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import PassSecurity from './pass-security.model';
+import PassSecurity from './pass-security.enum';
 
 @Component({
   selector: 'app-register',

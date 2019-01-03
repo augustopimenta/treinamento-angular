@@ -8,6 +8,7 @@ import { TotalPanelComponent } from './components/total-panel/total-panel.compon
 import { PurchasesPanelComponent } from './components/purchases-panel/purchases-panel.component';
 import {RouterModule} from '@angular/router';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoadingComponent } from './components/loading/loading.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [ HomeComponent ]
 })

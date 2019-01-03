@@ -1,6 +1,13 @@
-<app-loading></app-loading>
-
+<app-modal header="Titulo do modal" [closeable]="false" #modal>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto autem itaque, odit omnis sapiente sed
+  sunt totam ullam voluptatibus. Animi dolorum earum enim error illum inventore reiciendis rerum sapiente.
+  <div class="button" footer>
+    <button class="btn-small btn btn-danger" appCloseModal>Fechar</button>
+  </div>
+</app-modal>
 <app-header userPhoto="https://angular.io/assets/images/logos/angular/angular.svg" userName="Fulano de Tal"></app-header>
+<br>
+<button style="margin: 0 auto; display: block;" (click)="modal.show()" class="btn btn-danger"> Abrir modal </button>
 <main class="container">
   <div class="row">
     <div class="col-9">
