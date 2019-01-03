@@ -1,3 +1,14 @@
-<h3>LoginComponent</h3>
-
-<a style="color: white" routerLink="/registrar-se">Ir para /registrar-se</a>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <h1>Entrar</h1>
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="email" class="form-control" formControlName="email" id="email" #firstInput>
+  </div>
+  <div class="form-group">
+    <label for="password">Senha</label>
+    <input type="password" class="form-control" formControlName="password" id="password">
+  </div>
+  <button type="submit"  class="btn btn-block btn-danger">Entrar</button>
+  <br>
+  <span> Não tem cadastro? <a class="btn-link" routerLink="/registrar-se">Registre-se!</a> </span>
+</form>

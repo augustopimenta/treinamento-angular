@@ -1,0 +1,12 @@
+form {
+  width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+button[disabled] {
+  background: #EEE;
+  color: #333;
+  border: 1px solid #666;
+}
