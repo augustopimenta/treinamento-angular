@@ -1,13 +1,4 @@
-<app-modal header="Titulo do modal" [closeable]="false" #modal>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto autem itaque, odit omnis sapiente sed
-  sunt totam ullam voluptatibus. Animi dolorum earum enim error illum inventore reiciendis rerum sapiente.
-  <div class="button" footer>
-    <button class="btn-small btn btn-danger" appCloseModal>Fechar</button>
-  </div>
-</app-modal>
 <app-header userPhoto="https://angular.io/assets/images/logos/angular/angular.svg" userName="Fulano de Tal"></app-header>
-<br>
-<button style="margin: 0 auto; display: block;" (click)="modal.show()" class="btn btn-danger"> Abrir modal </button>
 <main class="container">
   <div class="row">
     <div class="col-9">
@@ -19,8 +10,9 @@
   </div>
   <div class="row">
     <div class="col-md">
-      <app-purchases-panel [purchases]="purchases"></app-purchases-panel>
+      <app-purchases-panel (addPurchase)="startNewPurchase()" [purchases]="purchases"></app-purchases-panel>
     </div>
   </div>
   <a style="text-align: center; display: block" routerLink="/entrar">[Ir para a tela de Login]</a>
 </main>
+<app-purchase-modal (finishPurchase)="finishNewPurchase($event)"></app-purchase-modal>

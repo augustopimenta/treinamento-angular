@@ -9,6 +9,8 @@ import { PurchasesPanelComponent } from './components/purchases-panel/purchases-
 import {RouterModule} from '@angular/router';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SharedModule } from '../shared/shared.module';
+import { PurchaseModalComponent } from './components/purchase-modal/purchase-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,15 @@ import { SharedModule } from '../shared/shared.module';
     MonthsPanelComponent,
     TotalPanelComponent,
     PurchasesPanelComponent,
-    LoadingComponent
+    LoadingComponent,
+    PurchaseModalComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [ HomeComponent ]
 })

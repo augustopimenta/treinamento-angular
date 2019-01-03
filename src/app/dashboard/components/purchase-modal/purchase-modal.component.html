@@ -1,0 +1,38 @@
+<app-modal header="Adicionar" [closeable]="true" (closeFinished)="onModalFinishedClose()" (openFinished)="onModalFinishedOpen()">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <small>* Campos obrigatórios</small>
+    <div class="form-group">
+      <label for="date">Data <small>*</small> </label>
+      <input class="form-control" type="date" id="date" [class.is-invalid]="date.dirty && date.invalid" formControlName="date" #firstInput>
+      <span *ngIf="date.dirty && date.hasError('required')" class="text-danger">Campo obrigatório</span>
+    </div>
+    <div class="form-group">
+      <label for="description">Descrição <small>*</small> </label>
+      <input class="form-control" type="text" id="description" [class.is-invalid]="description.dirty && description.invalid" formControlName="description">
+      <span *ngIf="description.dirty && description.hasError('required')" class="text-danger">Campo obrigatório</span>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantidade <small>*</small> </label>
+      <input class="form-control" type="text" id="quantity" [class.is-invalid]="quantity.dirty && quantity.invalid" formControlName="quantity">
+      <span *ngIf="quantity.dirty && quantity.hasError('required')" class="text-danger">Campo obrigatório</span>
+      <span *ngIf="quantity.dirty && quantity.hasError('pattern')" class="text-danger">Digite um número inteiro</span>
+      <span *ngIf="quantity.dirty && quantity.hasError('notZero')" class="text-danger">O valor não pode ser zero</span>
+    </div>
+    <div class="form-group">
+      <label for="value">Valor <small>*</small> </label>
+      <input class="form-control" type="text" id="value" [class.is-invalid]="value.dirty && value.invalid" formControlName="value" appMoneyMask>
+      <span *ngIf="value.dirty && value.hasError('required')" class="text-danger">Campo obrigatório</span>
+      <span *ngIf="value.dirty && value.hasError('notZero')" class="text-danger">O valor não pode ser zero</span>
+    </div>
+    <div class="form-group">
+      <label for="total">Total</label>
+      <input class="form-control" type="text" id="total" formControlName="total" tabindex="-1" readonly>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="paid" formControlName="paid">
+      <label class="form-check-label" for="paid">Já paguei essa compra</label>
+    </div>
+    <button type="submit" style="display: none"></button>
+  </form>
+  <button type="button" class="btn btn-danger" (click)="onSubmit()" [title]="form.invalid ? 'Preencha todos os campos obrigatórios e corrija os erros de validação para continuar' : ''" [disabled]="form.invalid" footer>Salvar</button>
+</app-modal>
