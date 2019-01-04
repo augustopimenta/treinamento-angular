@@ -5,6 +5,11 @@ form {
   border-radius: 6px;
 }
 
+label[for="password"] {
+  display: flex;
+  justify-content: space-between;
+}
+
 form > small {
   text-align: right;
   width: 100%;

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import PassSecurity from './pass-security.enum';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,11 @@ export class RegisterComponent implements AfterViewInit {
   password = new FormControl('', [ Validators.required, RegisterComponent.strongPassword ]);
   passwordAgain = new FormControl('', [ Validators.required, RegisterComponent.sameValue(this.password) ]);
   admin = new FormControl(false);
+
+  passwordSecurity$ = this.password.valueChanges.pipe(
+    startWith(''),
+    map(pass => RegisterComponent.checkPasswordSecurity(pass))
+  );
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({

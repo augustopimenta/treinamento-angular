@@ -5,9 +5,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SecurityIndicatorComponent } from './components/security-indicator/security-indicator.component';
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent, RegisterComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent, SecurityIndicatorComponent],
   imports: [
     CommonModule,
     RouterModule,

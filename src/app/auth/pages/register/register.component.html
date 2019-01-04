@@ -13,7 +13,10 @@
     <span *ngIf="email.dirty && email.hasError('email')" class="text-danger">Digite um e-mail válido</span>
   </div>
   <div class="form-group">
-    <label for="password">Senha <small>*</small></label>
+    <label for="password">
+      <span>Senha <small>*</small></span>
+      <app-security-indicator [strong]="passwordSecurity$ | async"></app-security-indicator>
+    </label>
     <input type="password" class="form-control" [class.is-invalid]="password.dirty && password.invalid" formControlName="password" id="password">
     <span *ngIf="password.dirty && password.hasError('required')" class="text-danger">Campo obrigatório</span>
     <span *ngIf="password.dirty && password.hasError('strongPassword')" class="text-danger">A senha informada é muito insegura</span>
