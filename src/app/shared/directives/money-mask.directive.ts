@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import SimpleMaskMoney from 'simple-mask-money';
 
@@ -44,6 +44,11 @@ export class MoneyMaskDirective implements ControlValueAccessor, OnInit {
     const strValue = parseFloat(obj).toFixed(2).replace('.', '');
 
     this.el.nativeElement.value = SimpleMaskMoney.format(strValue);
+  }
+
+  @HostListener('keyup', [ '$event.target.value' ])
+  onKeyUp(value) {
+    this.onChange(SimpleMaskMoney.formatToNumber(value));
   }
 
 }
