@@ -9,8 +9,11 @@
   <div class="form-group">
     <label for="email">E-mail <small>*</small></label>
     <input type="text" class="form-control" [class.is-invalid]="email.dirty && email.invalid" formControlName="email" id="email">
+    <span *ngIf="email.pending" class="text-info">Carregando...</span>
     <span *ngIf="email.dirty && email.hasError('required')" class="text-danger">Campo obrigatório</span>
     <span *ngIf="email.dirty && email.hasError('email')" class="text-danger">Digite um e-mail válido</span>
+    <span *ngIf="email.dirty && email.hasError('uniqueEmail')" class="text-danger">Este e-mail já está sendo utilizado por outro usuário</span>
+    <span *ngIf="email.dirty && email.hasError('uniqueEmailFail')" class="text-danger">Não foi possível verificar o e-mail</span>
   </div>
   <div class="form-group">
     <label for="password">
@@ -32,7 +35,7 @@
     <label class="form-check-label" for="is-admin">Sou administrador</label>
   </div>
   <br>
-  <button type="submit" [title]="(form.invalid) ? 'Preencha todos os campos obrigatórios e corrija os erros de validação para continuar' : ''"  [disabled]="form.invalid" class="btn btn-block btn-danger">Cadastrar</button>
+  <button type="submit" [title]="(form.invalid || form.pending) ? 'Preencha todos os campos obrigatórios e corrija os erros de validação para continuar' : ''"  [disabled]="form.invalid || form.pending" class="btn btn-block btn-danger">Cadastrar</button>
   <br>
   <span> Já tem cadastro? <a class="btn-link" routerLink="/entrar">Entrar!</a> </span>
 </form>

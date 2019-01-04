@@ -6,6 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecurityIndicatorComponent } from './components/security-indicator/security-indicator.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, RegisterComponent, SecurityIndicatorComponent],
@@ -13,7 +14,8 @@ import { SecurityIndicatorComponent } from './components/security-indicator/secu
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [AuthComponent]
 })

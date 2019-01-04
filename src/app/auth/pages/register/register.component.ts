@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import PassSecurity from './pass-security.enum';
-import { map, startWith } from 'rxjs/operators';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { Observable, of, timer } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,18 +16,18 @@ export class RegisterComponent implements AfterViewInit {
 
   form: FormGroup;
 
-  name = new FormControl('', [ Validators.required ]);
-  email = new FormControl('', [ Validators.required, Validators.email ]);
-  password = new FormControl('', [ Validators.required, RegisterComponent.strongPassword ]);
-  passwordAgain = new FormControl('', [ Validators.required, RegisterComponent.sameValue(this.password) ]);
-  admin = new FormControl(false);
+  name = this.fb.control('', [ Validators.required ]);
+  email = this.fb.control('', [ Validators.required, Validators.email ], [ this.uniqueEmail.bind(this) ]);
+  password = this.fb.control('', [ Validators.required, RegisterComponent.strongPassword ]);
+  passwordAgain = this.fb.control('', [ Validators.required, RegisterComponent.sameValue(this.password) ]);
+  admin = this.fb.control(false);
 
   passwordSecurity$ = this.password.valueChanges.pipe(
     startWith(''),
     map(pass => RegisterComponent.checkPasswordSecurity(pass))
   );
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.form = this.fb.group({
       name: this.name,
       email: this.email,
@@ -66,6 +68,15 @@ export class RegisterComponent implements AfterViewInit {
       return null;
     }
     return RegisterComponent.checkPasswordSecurity(control.value) >= PassSecurity.STRONG ? null : { strongPassword: true };
+  }
+
+  uniqueEmail(control: AbstractControl): Observable<ValidationErrors | null> {
+    return timer(500).pipe(
+      switchMap(() => this.authService.checkUniqueEmail(control.value).pipe(
+        map(unique => unique ? null : { uniqueEmail: true }),
+        catchError(() => of({ uniqueEmailFail: true }))
+      ))
+    );
   }
 
   ngAfterViewInit() {
