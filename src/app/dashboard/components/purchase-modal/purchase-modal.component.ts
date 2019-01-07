@@ -1,7 +1,9 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import Purchase from '../../models/purchase.model';
+import { distinctUntilChanged, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 const moment = require('moment');
 
 @Component({
@@ -9,7 +11,7 @@ const moment = require('moment');
   templateUrl: './purchase-modal.component.html',
   styleUrls: ['./purchase-modal.component.scss']
 })
-export class PurchaseModalComponent {
+export class PurchaseModalComponent implements OnInit, OnDestroy {
 
   @ViewChild('firstInput') firstInput: ElementRef<HTMLInputElement>;
   @ViewChild(ModalComponent) modal: ModalComponent;
@@ -18,14 +20,16 @@ export class PurchaseModalComponent {
 
   form: FormGroup;
 
+  private subscription: Subscription;
+
   date = this.fb.control('', [ Validators.required ]);
   description = this.fb.control('', [ Validators.required ]);
-  quantity = this.fb.control('', [
+  quantity = this.fb.control(1, [
     Validators.required,
     Validators.pattern(/^\d*$/),
     PurchaseModalComponent.notZero
   ]);
-  value = this.fb.control('', [
+  value = this.fb.control(0, [
     Validators.required,
     PurchaseModalComponent.notZero
   ]);
@@ -57,6 +61,25 @@ export class PurchaseModalComponent {
     });
   }
 
+  ngOnInit() {
+    this.subscription = this.form.valueChanges.pipe(
+      map(data => {
+        const quantity = +data.quantity;
+        const value = parseFloat(data.value);
+        const total = quantity * value;
+
+        return isNaN(total) ? 0.0 : total;
+      }),
+      distinctUntilChanged()
+    ).subscribe(total => {
+      this.total.setValue(total);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   show() {
     this.modal.show();
   }
@@ -65,14 +88,21 @@ export class PurchaseModalComponent {
     this.modal.hide();
   }
 
-  onModalFinishedClose() {
+  onModalFinishedOpen() {
     this.firstInput.nativeElement.focus();
 
     this.date.setValue(moment().format('YYYY-MM-DD'));
   }
 
-  onModalFinishedOpen() {
-    this.form.reset();
+  onModalFinishedClose() {
+    this.form.reset({
+      date: '',
+      description: '',
+      quantity: 1,
+      value: 0,
+      paid: false,
+      total: 0
+    });
   }
 
   onSubmit() {
