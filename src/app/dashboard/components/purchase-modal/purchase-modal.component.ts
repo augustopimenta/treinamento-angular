@@ -2,8 +2,9 @@ import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChi
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import Purchase from '../../models/purchase.model';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { PurchasesService } from '../../services/purchases.service';
 const moment = require('moment');
 
 @Component({
@@ -36,6 +37,13 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
   paid = this.fb.control(false);
   total = this.fb.control(0);
 
+  descriptionOptions$ = this.description.valueChanges.pipe(
+    startWith(''),
+    debounceTime(400),
+    distinctUntilChanged(),
+    switchMap(description => this.purchasesService.search(description)),
+  );
+
   static notZero(control: AbstractControl): ValidationErrors | null {
     if (control.value === '') {
       return null;
@@ -50,7 +58,7 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
     return { notZero: true };
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private purchasesService: PurchasesService) {
     this.form = this.fb.group({
       date: this.date,
       description: this.description,

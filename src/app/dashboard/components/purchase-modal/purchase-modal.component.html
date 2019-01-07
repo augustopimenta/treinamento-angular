@@ -9,7 +9,7 @@
     <div class="form-group">
       <label for="description">Descrição <small>*</small> </label>
       <app-auto-complete
-        [options]="['Primeiro', 'Segundo', 'Terceiro']"
+        [options]="descriptionOptions$ | async"
         name="description"
         [invalid]="description.dirty && description.invalid"
         formControlName="description">
