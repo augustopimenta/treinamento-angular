@@ -1,0 +1,15 @@
+.alert {
+  transform: translate(-50%, -100%);
+  left: 50%;
+  position: absolute;
+  display: block;
+  transition: all 500ms;
+  opacity: 0;
+  top: 10px;
+  z-index: 10;
+}
+
+.alert.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}

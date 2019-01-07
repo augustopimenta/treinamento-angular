@@ -8,6 +8,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import {registerLocaleData} from '@angular/common';
 import locale from '@angular/common/locales/pt';
 import {AuthModule} from './auth/auth.module';
+import { CoreModule } from './core/core.module';
 
 registerLocaleData(locale);
 
@@ -19,7 +20,8 @@ registerLocaleData(locale);
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    DashboardModule
+    DashboardModule,
+    CoreModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'}
