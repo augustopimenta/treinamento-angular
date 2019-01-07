@@ -1,0 +1,14 @@
+<input [class.is-invalid]="invalid"
+       (keyup)="onInputKeyUp($event)"
+       (focus)="onInputFocus($event)"
+       (blur)="onInputFocusOut()"
+       class="form-control" [ngModel]="value" (ngModelChange)="updateChanges($event)"
+       type="text" [name]="name" [id]="name" autocomplete="off">
+<ul class="dropdown" [class.open]="dropdownOpen">
+  <li
+    (mousedown)="clickItem(option)"
+    [class.selected]="i == selectedIndex"
+    *ngFor="let option of options; let i = index">
+    {{option}}
+  </li>
+</ul>

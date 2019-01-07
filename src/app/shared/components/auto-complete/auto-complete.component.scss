@@ -1,0 +1,33 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  background: white;
+  width: 100%;
+  border: 1px solid #DDD;
+  box-shadow: 2px 2px 3px #DDD;
+  display: none;
+  padding: 0;
+}
+
+.dropdown.open {
+  display: block;
+}
+
+.dropdown li {
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+
+.dropdown li:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.dropdown li.selected {
+  background-color: rgba(0, 0, 0, 0.05);
+}

@@ -8,7 +8,12 @@
     </div>
     <div class="form-group">
       <label for="description">Descrição <small>*</small> </label>
-      <input class="form-control" type="text" id="description" [class.is-invalid]="description.dirty && description.invalid" formControlName="description">
+      <app-auto-complete
+        [options]="['Primeiro', 'Segundo', 'Terceiro']"
+        name="description"
+        [invalid]="description.dirty && description.invalid"
+        formControlName="description">
+      </app-auto-complete>
       <span *ngIf="description.dirty && description.hasError('required')" class="text-danger">Campo obrigatório</span>
     </div>
     <div class="form-group">
