@@ -1,4 +1,4 @@
-<div [ngClass]="['alert', 'alert-' + alert.type, 'alert-dismissible', 'fade', alert.open ? 'show' : '']" role="alert">
+<div *ngIf="alert$ | async as alert" [ngClass]="['alert', 'alert-' + alert.type, 'alert-dismissible', 'fade', alert.open ? 'show' : '']" role="alert">
   {{ alert.message }}
   <button (click)="onClose()" type="button" class="close" aria-label="Close">
     <span aria-hidden="true">&times;</span>

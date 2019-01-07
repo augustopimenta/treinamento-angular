@@ -1,14 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import MonthResult from '../../models/month-result.model';
 import Purchase from '../../models/purchase.model';
 import { PurchaseModalComponent } from '../../components/purchase-modal/purchase-modal.component';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   selectedMonth = 0;
 
@@ -24,6 +25,14 @@ export class HomeComponent {
   ];
 
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
+
+  constructor(private alert: AlertService) {}
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.alert.success('Oi! Sou um Alert, dessa vez funcional! =D');
+    }, 1000);
+  }
 
   startNewPurchase() {
     this.purchaseModal.show();

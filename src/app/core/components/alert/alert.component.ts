@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import Alert from '../../models/alert.model';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-alert',
@@ -8,10 +9,12 @@ import Alert from '../../models/alert.model';
 })
 export class AlertComponent  {
 
-  @Input() alert: Alert;
+  alert$ = this.alert.data$;
 
   onClose() {
-    console.log('Fechar alert');
+    this.alert.hide();
   }
+
+  constructor(private alert: AlertService) {}
 
 }
