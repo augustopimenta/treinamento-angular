@@ -10,7 +10,7 @@ import { DialogService } from '../../../core/services/dialog.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   selectedMonth = 0;
 
@@ -27,13 +27,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
-  constructor(private alert: AlertService, private dialog: DialogService) {}
-
-  ngOnInit() {
-    this.dialog.confirm('Atenção', 'Deseja realmente continuar? (Teste do dialog)', () => {
-      this.alert.success('Tudo bem então!');
-    });
-  }
+  constructor() {}
 
   startNewPurchase() {
     this.purchaseModal.show();
