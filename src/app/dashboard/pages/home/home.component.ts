@@ -3,6 +3,7 @@ import MonthResult from '../../models/month-result.model';
 import Purchase from '../../models/purchase.model';
 import { PurchaseModalComponent } from '../../components/purchase-modal/purchase-modal.component';
 import { AlertService } from '../../../core/services/alert.service';
+import { DialogService } from '../../../core/services/dialog.service';
 
 @Component({
   selector: 'app-home',
@@ -26,12 +27,12 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
-  constructor(private alert: AlertService) {}
+  constructor(private alert: AlertService, private dialog: DialogService) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.alert.success('Oi! Sou um Alert, dessa vez funcional! =D');
-    }, 1000);
+    this.dialog.confirm('Atenção', 'Deseja realmente continuar? (Teste do dialog)', () => {
+      this.alert.success('Tudo bem então!');
+    });
   }
 
   startNewPurchase() {

@@ -1,5 +1,5 @@
 <app-modal [header]="dialog.title" [closeable]="false">
   <span [innerHtml]="dialog.message"></span>
-  <button class="btn btn-danger" id="yes" appCloseModal footer>Sim</button>
+  <button class="btn btn-danger" id="yes" appCloseModal (click)="dialog.success()" footer>Sim</button>
   <button class="btn btn-outline-danger" id="no" appCloseModal footer>Não</button>
 </app-modal>
