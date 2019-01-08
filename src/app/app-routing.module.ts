@@ -13,6 +13,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: 'entrar', component: LoginComponent },
+      { path: 'entrar/:id', component: LoginComponent },
       { path: 'registrar-se', component: RegisterComponent },
       { path: '**', redirectTo: '' }
     ]
