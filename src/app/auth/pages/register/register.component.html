@@ -1,28 +1,35 @@
-<form>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
   <h1>Registrar-se</h1>
   <small>* Campo obrigatório</small>
   <div class="form-group">
     <label for="name">Nome <small>*</small></label>
-    <input type="text" class="form-control" id="name">
+    <input type="text" class="form-control" [class.is-invalid]="name.dirty && name.invalid" formControlName="name" id="name" #firstInput>
+    <span *ngIf="name.dirty && name.hasError('required')" class="text-danger">Campo obrigatório</span>
   </div>
   <div class="form-group">
     <label for="email">E-mail <small>*</small></label>
-    <input type="text" class="form-control" id="email">
+    <input type="text" class="form-control" [class.is-invalid]="email.dirty && email.invalid" formControlName="email" id="email">
+    <span *ngIf="email.dirty && email.hasError('required')" class="text-danger">Campo obrigatório</span>
+    <span *ngIf="email.dirty && email.hasError('email')" class="text-danger">Digite um e-mail válido</span>
   </div>
   <div class="form-group">
     <label for="password">Senha <small>*</small></label>
-    <input type="password" class="form-control" id="password">
+    <input type="password" class="form-control" [class.is-invalid]="password.dirty && password.invalid" formControlName="password" id="password">
+    <span *ngIf="password.dirty && password.hasError('required')" class="text-danger">Campo obrigatório</span>
+    <span *ngIf="password.dirty && password.hasError('strongPassword')" class="text-danger">A senha informada é muito insegura</span>
   </div>
   <div class="form-group">
     <label for="password-again">Senha Novamente <small>*</small></label>
-    <input type="password" class="form-control" id="password-again">
+    <input type="password" class="form-control" [class.is-invalid]="passwordAgain.dirty && passwordAgain.invalid" formControlName="passwordAgain" id="password-again">
+    <span *ngIf="passwordAgain.dirty && passwordAgain.hasError('required')" class="text-danger">Campo obrigatório</span>
+    <span *ngIf="passwordAgain.dirty && passwordAgain.hasError('sameValue')" class="text-danger">O valor informado não é igual a Senha</span>
   </div>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="is-admin">
+    <input type="checkbox" class="form-check-input" formControlName="admin" id="is-admin">
     <label class="form-check-label" for="is-admin">Sou administrador</label>
   </div>
   <br>
-  <button type="submit" class="btn btn-block btn-danger">Cadastrar</button>
+  <button type="submit" [title]="(form.invalid) ? 'Preencha todos os campos obrigatórios e corrija os erros de validação para continuar' : ''"  [disabled]="form.invalid" class="btn btn-block btn-danger">Cadastrar</button>
   <br>
   <span> Já tem cadastro? <a class="btn-link" routerLink="/entrar">Entrar!</a> </span>
 </form>
