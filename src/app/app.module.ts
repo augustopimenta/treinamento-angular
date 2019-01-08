@@ -7,8 +7,14 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 import {registerLocaleData} from '@angular/common';
 import locale from '@angular/common/locales/pt';
-import {AuthModule} from './auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/auth.effects';
 
 registerLocaleData(locale);
 
@@ -21,11 +27,14 @@ registerLocaleData(locale);
     AppRoutingModule,
     AuthModule,
     DashboardModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([ AuthEffects ]),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
