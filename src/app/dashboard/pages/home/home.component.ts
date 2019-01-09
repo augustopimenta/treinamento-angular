@@ -4,9 +4,10 @@ import Purchase from '../../models/purchase.model';
 import { PurchaseModalComponent } from '../../components/purchase-modal/purchase-modal.component';
 import { AlertService } from '../../../core/services/alert.service';
 import { DialogService } from '../../../core/services/dialog.service';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
+import { selectAuthUser } from '../../../auth/auth.selectors';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,8 @@ import { Logout } from '../../../auth/auth.actions';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  user$ = this.store.pipe(select(selectAuthUser));
 
   selectedMonth = 0;
 
