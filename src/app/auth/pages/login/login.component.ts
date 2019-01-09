@@ -1,5 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../../reducers';
+import { LoginRequested } from '../../auth.actions';
+import { selectAuthLoading } from '../../auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +16,9 @@ export class LoginComponent implements AfterViewInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  loading$ = this.store.pipe(select(selectAuthLoading));
+
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.form = this.fb.group({
       email: [''],
       password: ['']
@@ -24,7 +30,7 @@ export class LoginComponent implements AfterViewInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    this.store.dispatch(new LoginRequested(this.form.value));
   }
 
 }

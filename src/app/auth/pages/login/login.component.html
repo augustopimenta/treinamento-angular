@@ -8,7 +8,9 @@
     <label for="password">Senha</label>
     <input type="password" class="form-control" formControlName="password" id="password">
   </div>
-  <button type="submit"  class="btn btn-block btn-danger">Entrar</button>
+  <button type="submit" [disabled]="loading$ | async" class="btn btn-block btn-danger">
+    {{ (loading$ | async) ? 'Carregando...' : 'Entrar' }}
+  </button>
   <br>
   <span> Não tem cadastro? <a class="btn-link" routerLink="/registrar-se">Registre-se!</a> </span>
 </form>

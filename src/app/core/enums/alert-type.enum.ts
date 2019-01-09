@@ -1,7 +1,7 @@
 enum AlertType {
   SUCCESS = 'success',
   WARNING = 'warning',
-  ERROR = 'error'
+  ERROR = 'danger'
 }
 
 export default AlertType;
