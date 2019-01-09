@@ -3,13 +3,27 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AuthActionTypes, LoginError, LoginRequested, LoginSucceed, Logout } from './auth.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
-import { of } from 'rxjs';
+import { defer, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlertService } from '../core/services/alert.service';
 
-
 @Injectable()
 export class AuthEffects {
+
+  @Effect()
+  init$ = defer(() => {
+    const token = localStorage.getItem('auth.token');
+    const user = localStorage.getItem('auth.user');
+
+    if (token && user) {
+      return of(new LoginSucceed({
+        token,
+        user: JSON.parse(user)
+      }));
+    }
+
+    return <any>of(new Logout({ error: '' }));
+  });
 
   @Effect()
   loginRequested$ = this.actions$.pipe(
@@ -77,5 +91,9 @@ export class AuthEffects {
     })
   );
 
-  constructor(private actions$: Actions, private authService: AuthService, private router: Router, private alert: AlertService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+    private alert: AlertService) {}
 }
