@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { AuthActionTypes, LoginError, LoginRequested, LoginSucceed } from './auth.actions';
+import { AuthActionTypes, LoginError, LoginRequested, LoginSucceed, Logout } from './auth.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
 import { of } from 'rxjs';
@@ -59,6 +59,21 @@ export class AuthEffects {
     ofType<LoginError>(AuthActionTypes.LoginErrorAction),
     tap(action => {
       this.alert.error(action.payload.error, 5000);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  logout$ = this.actions$.pipe(
+    ofType<Logout>(AuthActionTypes.LogoutAction),
+    tap(action => {
+      localStorage.removeItem('auth.token');
+      localStorage.removeItem('auth.user');
+
+      if (action.payload.error) {
+        this.alert.error(action.payload.error, 5000);
+      }
+
+      this.router.navigateByUrl('/entrar');
     })
   );
 

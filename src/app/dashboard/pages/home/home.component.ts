@@ -4,6 +4,9 @@ import Purchase from '../../models/purchase.model';
 import { PurchaseModalComponent } from '../../components/purchase-modal/purchase-modal.component';
 import { AlertService } from '../../../core/services/alert.service';
 import { DialogService } from '../../../core/services/dialog.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../reducers';
+import { Logout } from '../../../auth/auth.actions';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +30,11 @@ export class HomeComponent {
 
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
+
+  onLogout() {
+    this.store.dispatch(new Logout({ error: '' }));
+  }
 
   startNewPurchase() {
     this.purchaseModal.show();
