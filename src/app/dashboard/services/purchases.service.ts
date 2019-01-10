@@ -11,8 +11,7 @@ export class PurchasesService {
 
   search(description: string) {
     return this.http.get<string[]>(`${this.baseApiUrl}/v1/purchases`, {
-      params: { search: '1', description },
-      headers: { 'Authorization': `Bearer 041158aabfd998f0aa4e9dba1b4df2a6f34887b9d685c80422eac76a2524f091` }
+      params: { search: '1', description }
     });
   }
 

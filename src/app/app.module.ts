@@ -15,6 +15,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/auth.effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/interceptors/AuthInterceptor';
 
 registerLocaleData(locale);
 
@@ -33,7 +35,8 @@ registerLocaleData(locale);
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
   ],
   bootstrap: [ AppComponent ]
 })
