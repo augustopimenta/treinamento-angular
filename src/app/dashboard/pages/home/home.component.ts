@@ -82,6 +82,17 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  togglePaidPurchase(data: Purchase) {
+    this.purchasesService.update({ ...data, paid: !data.paid })
+      .subscribe(purchase => {
+        this.store.dispatch(new UpdatePurchase({ purchase }));
+
+        this.alert.success('Compra editada!', 3000);
+      }, () => {
+        this.alert.error('Não foi possível editar a compra', 5000);
+      });
+  }
+
   finishPurchase(data: Purchase) {
     if (data.id) {
       this.purchasesService.update(data).subscribe(purchase => {
