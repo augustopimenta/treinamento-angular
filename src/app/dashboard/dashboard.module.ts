@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PanelComponent } from './components/panel/panel.component';
@@ -36,6 +36,7 @@ import { reducer } from './dashboard.reducer';
     StoreModule.forFeature('dashboard', reducer),
     EffectsModule.forFeature([ DashboardEffects ])
   ],
+  providers: [ DatePipe ],
   exports: [ HomeComponent ]
 })
 export class DashboardModule { }

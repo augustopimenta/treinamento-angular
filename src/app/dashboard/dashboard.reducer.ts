@@ -38,6 +38,9 @@ export function reducer(state = initialState, action: DashboardActions): Dashboa
         ]
       };
 
+    case DashboardActionTypes.DeletePurchaseAction:
+      return { ...state, purchases: state.purchases.filter(purchase => purchase.id !== action.payload.id) };
+
     default:
       return state;
   }

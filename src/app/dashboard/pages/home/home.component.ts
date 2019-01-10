@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
-import { ChangeSelectedMonth, CreatePurchase, RequestedPurchases, UpdatePurchase } from '../../dashboard.actions';
+import { ChangeSelectedMonth, CreatePurchase, DeletePurchase, RequestedPurchases, UpdatePurchase } from '../../dashboard.actions';
 import {
   selectDashboardLoading,
   selectDashboardMonthGroups,
@@ -14,6 +14,8 @@ import {
 } from '../../dashboard.selectors';
 import { PurchasesService } from '../../services/purchases.service';
 import { AlertService } from '../../../core/services/alert.service';
+import { DialogService } from '../../../core/services/dialog.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +35,13 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
-  constructor(private store: Store<AppState>, private purchasesService: PurchasesService, private alert: AlertService) {}
+  constructor(
+    private store: Store<AppState>,
+    private purchasesService: PurchasesService,
+    private alert: AlertService,
+    private dialog: DialogService,
+    private date: DatePipe
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(new RequestedPurchases());
@@ -53,6 +61,25 @@ export class HomeComponent implements OnInit {
 
   startUpdatePurchase(purchase: Purchase) {
     this.purchaseModal.show(purchase);
+  }
+
+  startDeletePurchase(purchase: Purchase) {
+    const date = this.date.transform(purchase.date, 'dd/MM/yyyy');
+
+    this.dialog.confirm(
+      'Excluir compra',
+      `Deseja realmente excluir a compra de <br> <strong> (${date} - ${purchase.description}) </strong> ?`,
+      () => {
+        this.purchasesService.delete(purchase.id)
+          .subscribe(() => {
+            this.store.dispatch(new DeletePurchase({ id: purchase.id }));
+
+            this.alert.success('Compra excluida!', 3000);
+          }, () => {
+            this.alert.error('Não foi possível excluir a compra', 5000);
+          });
+      }
+    );
   }
 
   finishPurchase(data: Purchase) {

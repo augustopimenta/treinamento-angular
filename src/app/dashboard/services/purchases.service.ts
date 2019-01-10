@@ -28,4 +28,8 @@ export class PurchasesService {
     return this.http.post<Purchase>(`${this.baseApiUrl}/v1/purchases/${purchase.id}`, purchase);
   }
 
+  delete(id: string) {
+    return this.http.delete(`${this.baseApiUrl}/v1/purchases/${id}`);
+  }
+
 }
