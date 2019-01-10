@@ -3,7 +3,6 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardModule } from './dashboard/dashboard.module';
 
 import {registerLocaleData} from '@angular/common';
 import locale from '@angular/common/locales/pt';
@@ -28,7 +27,6 @@ registerLocaleData(locale);
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    DashboardModule,
     CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([ AuthEffects ]),

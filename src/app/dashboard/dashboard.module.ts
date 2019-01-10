@@ -6,7 +6,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { MonthsPanelComponent } from './components/months-panel/months-panel.component';
 import { TotalPanelComponent } from './components/total-panel/total-panel.component';
 import { PurchasesPanelComponent } from './components/purchases-panel/purchases-panel.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SharedModule } from '../shared/shared.module';
 import { PurchaseModalComponent } from './components/purchase-modal/purchase-modal.component';
@@ -15,6 +15,10 @@ import { DashboardEffects } from './dashboard.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './dashboard.reducer';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { reducer } from './dashboard.reducer';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forChild(routes),
     StoreModule.forFeature('dashboard', reducer),
     EffectsModule.forFeature([ DashboardEffects ])
   ],
