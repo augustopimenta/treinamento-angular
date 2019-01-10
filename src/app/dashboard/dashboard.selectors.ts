@@ -15,6 +15,11 @@ export const selectDashboardTotals = createSelector(
   state => sumPurchases(state.purchases)
 );
 
+export const selectDashboardSelectedMonth = createSelector(
+  selectDashboardState,
+  state => state.selectedMonthIndex
+);
+
 const sumPurchases = (purchases: Purchase[]) => {
   return purchases.reduce((totals, purchase) => {
     const purchaseTotal = purchase.value * purchase.quantity;

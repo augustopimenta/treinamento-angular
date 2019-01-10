@@ -7,7 +7,12 @@ import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
 import { RequestedPurchases } from '../../dashboard.actions';
-import { selectDashboardLoading, selectDashboardMonthGroups, selectDashboardTotals } from '../../dashboard.selectors';
+import {
+  selectDashboardLoading,
+  selectDashboardMonthGroups,
+  selectDashboardSelectedMonth,
+  selectDashboardTotals
+} from '../../dashboard.selectors';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +27,7 @@ export class HomeComponent implements OnInit {
   totals$ = this.store.pipe(select(selectDashboardTotals));
   loading$ = this.store.pipe(select(selectDashboardLoading));
   months$ = this.store.pipe(select(selectDashboardMonthGroups(this.today)));
-
-  selectedMonth = 0;
+  selectedMonth$ = this.store.pipe(select(selectDashboardSelectedMonth));
 
   purchases: Purchase[] = [
     {id: 1, date: '2019-01-10', description: 'Pão de queijo', paid: true, value: 2, quantity: 3, total: 6 }
