@@ -7,7 +7,7 @@ import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
 import { RequestedPurchases } from '../../dashboard.actions';
-import { selectDashboardLoading, selectDashboardTotals } from '../../dashboard.selectors';
+import { selectDashboardLoading, selectDashboardMonthGroups, selectDashboardTotals } from '../../dashboard.selectors';
 
 @Component({
   selector: 'app-home',
@@ -16,18 +16,14 @@ import { selectDashboardLoading, selectDashboardTotals } from '../../dashboard.s
 })
 export class HomeComponent implements OnInit {
 
+  private today = new Date();
+
   user$ = this.store.pipe(select(selectAuthUser));
   totals$ = this.store.pipe(select(selectDashboardTotals));
   loading$ = this.store.pipe(select(selectDashboardLoading));
+  months$ = this.store.pipe(select(selectDashboardMonthGroups(this.today)));
 
   selectedMonth = 0;
-
-  months: MonthResult[] = [
-    {date: new Date(2019, 0, 1), total: 100, pending: 10 },
-    {date: new Date(2019, 1, 1), total: 100, pending: 10 },
-    {date: new Date(2019, 2, 1), total: 100, pending: 10 },
-    {date: new Date(2019, 3, 1), total: 100, pending: 10 },
-  ];
 
   purchases: Purchase[] = [
     {id: 1, date: '2019-01-10', description: 'Pão de queijo', paid: true, value: 2, quantity: 3, total: 6 }

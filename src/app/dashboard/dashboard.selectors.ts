@@ -27,3 +27,28 @@ const sumPurchases = (purchases: Purchase[]) => {
   }, { total: 0, pending: 0 });
 };
 
+export const selectDashboardMonthGroups = (start: Date) => {
+  return createSelector(
+    selectDashboardState,
+    state => {
+      const groups = [];
+      const date = moment(start).startOf('month');
+
+      Array.from(new Array(4)).forEach(() => {
+        const purchases = state.purchases.filter(purchase =>
+          moment(purchase.date).startOf('month').isSame(date)
+        );
+
+        const totals = sumPurchases(purchases);
+
+        groups.push({
+          date: date.toDate(), total: totals.total, pending: totals.pending
+        });
+
+        date.subtract(1, 'months');
+      });
+
+      return groups;
+    }
+  );
+};

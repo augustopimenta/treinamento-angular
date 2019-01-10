@@ -3,7 +3,7 @@
 <main class="container">
   <div class="row">
     <div class="col-9">
-      <app-months-panel [months]="months" [selectedMonthIndex]="selectedMonth"></app-months-panel>
+      <app-months-panel [months]="months$ | async" [selectedMonthIndex]="selectedMonth"></app-months-panel>
     </div>
     <div class="col-3" style="padding-left: 0" *ngIf="(totals$ | async) as totals" >
       <app-total-panel [total]="totals.total" [pending]="totals.pending"></app-total-panel>
