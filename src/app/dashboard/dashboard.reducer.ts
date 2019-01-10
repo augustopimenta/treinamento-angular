@@ -21,6 +21,9 @@ export function reducer(state = initialState, action: DashboardActions): Dashboa
     case DashboardActionTypes.FetchPurchasesAction:
       return { ...state, loading: false, purchases: action.payload.purchases, selectedMonthIndex: 0 };
 
+    case DashboardActionTypes.ChangeSelectedMonthAction:
+      return { ...state, selectedMonthIndex: action.payload.index };
+
     default:
       return state;
   }

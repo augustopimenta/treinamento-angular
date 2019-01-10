@@ -1,9 +1,9 @@
 <app-loading *ngIf="loading$ | async"></app-loading>
-<app-header userPhoto="https://angular.io/assets/images/logos/angular/angular.svg" [userName]="(user$ | async).name" (logout)="onLogout()"></app-header>
+<app-header userPhoto="https://angular.io/assets/images/logos/angular/angular.svg" [userName]="(user$ | async).name" (logout)="logout()"></app-header>
 <main class="container">
   <div class="row">
     <div class="col-9">
-      <app-months-panel [months]="months$ | async" [selectedMonthIndex]="selectedMonth$ | async"></app-months-panel>
+      <app-months-panel (select)="changeMonth($event)" [months]="months$ | async" [selectedMonthIndex]="selectedMonth$ | async"></app-months-panel>
     </div>
     <div class="col-3" style="padding-left: 0" *ngIf="(totals$ | async) as totals" >
       <app-total-panel [total]="totals.total" [pending]="totals.pending"></app-total-panel>
@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <div class="col-md">
-      <app-purchases-panel (addPurchase)="startNewPurchase()" [purchases]="purchases"></app-purchases-panel>
+      <app-purchases-panel (addPurchase)="startNewPurchase()" [purchases]="purchases$ | async"></app-purchases-panel>
     </div>
   </div>
 </main>

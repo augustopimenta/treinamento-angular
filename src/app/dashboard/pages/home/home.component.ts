@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import MonthResult from '../../models/month-result.model';
 import Purchase from '../../models/purchase.model';
 import { PurchaseModalComponent } from '../../components/purchase-modal/purchase-modal.component';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
-import { RequestedPurchases } from '../../dashboard.actions';
+import { ChangeSelectedMonth, RequestedPurchases } from '../../dashboard.actions';
 import {
   selectDashboardLoading,
   selectDashboardMonthGroups,
-  selectDashboardSelectedMonth,
+  selectDashboardSelectedMonth, selectDashboardSelectedPurchases,
   selectDashboardTotals
 } from '../../dashboard.selectors';
 
@@ -28,10 +27,7 @@ export class HomeComponent implements OnInit {
   loading$ = this.store.pipe(select(selectDashboardLoading));
   months$ = this.store.pipe(select(selectDashboardMonthGroups(this.today)));
   selectedMonth$ = this.store.pipe(select(selectDashboardSelectedMonth));
-
-  purchases: Purchase[] = [
-    {id: 1, date: '2019-01-10', description: 'Pão de queijo', paid: true, value: 2, quantity: 3, total: 6 }
-  ];
+  purchases$ = this.store.pipe(select(selectDashboardSelectedPurchases(this.today)));
 
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
@@ -41,8 +37,12 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(new RequestedPurchases());
   }
 
-  onLogout() {
+  logout() {
     this.store.dispatch(new Logout({ error: '' }));
+  }
+
+  changeMonth(month) {
+    this.store.dispatch(new ChangeSelectedMonth({ index: month.index }));
   }
 
   startNewPurchase() {

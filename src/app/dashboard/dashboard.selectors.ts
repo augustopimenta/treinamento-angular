@@ -57,3 +57,29 @@ export const selectDashboardMonthGroups = (start: Date) => {
     }
   );
 };
+
+export const selectDashboardSelectedPurchases = (start: Date) => {
+  return createSelector(
+    selectDashboardState,
+    selectDashboardMonthGroups(start),
+    (state, months) => {
+      const date = moment(months[state.selectedMonthIndex].date);
+      return state.purchases
+        .filter(purchase => moment(purchase.date).startOf('month').isSame(date))
+        .sort((p1, p2) => {
+          const p1Date = moment(p1.date);
+          const p2Date = moment(p2.date);
+
+          if (p1Date.isBefore(p2Date)) {
+            return 1;
+          }
+
+          if (p1Date.isAfter(p2Date)) {
+            return -1;
+          }
+
+          return 0;
+        });
+    }
+  );
+};

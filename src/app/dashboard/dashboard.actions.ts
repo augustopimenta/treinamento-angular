@@ -3,7 +3,8 @@ import Purchase from './models/purchase.model';
 
 export enum DashboardActionTypes {
   RequestedPurchasesAction = '[Dashboard Page] Requested Purchases Action',
-  FetchPurchasesAction = '[Dashboard Page] Fetch Purchases Action'
+  FetchPurchasesAction = '[Dashboard Page] Fetch Purchases Action',
+  ChangeSelectedMonthAction = '[Dashboard Page] Change Selected Month Action',
 }
 
 export class RequestedPurchases implements Action {
@@ -16,4 +17,10 @@ export class FetchPurchases implements Action {
   constructor(public payload: { purchases: Purchase[] }) {}
 }
 
-export type DashboardActions = RequestedPurchases | FetchPurchases;
+export class ChangeSelectedMonth implements Action {
+  readonly type = DashboardActionTypes.ChangeSelectedMonthAction;
+
+  constructor(public payload: { index: number }) {}
+}
+
+export type DashboardActions = RequestedPurchases | FetchPurchases | ChangeSelectedMonth;
