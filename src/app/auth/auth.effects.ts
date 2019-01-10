@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { AuthActionTypes, LoginError, LoginRequested, LoginSucceed, Logout } from './auth.actions';
+import { AuthActionTypes, LoginError, LoginRequested, LoginSucceed, Logout, RegisterFinish, RegisterStarted } from './auth.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
 import { defer, of } from 'rxjs';
@@ -74,6 +74,24 @@ export class AuthEffects {
     tap(action => {
       this.alert.error(action.payload.error, 5000);
     })
+  );
+
+  @Effect()
+  register$ = this.actions$.pipe(
+    ofType<RegisterStarted>(AuthActionTypes.RegisterStartedAction),
+    switchMap(action => this.authService.register(action.payload.user).pipe(
+      tap(() => {
+        this.alert.success('Cadastro concluído! Entre agora com seu novo cadastro', 5000);
+
+        this.router.navigateByUrl('/entrar');
+      }),
+      catchError(() => {
+        this.alert.error('Não foi possível cadastrar, por favor tente novamente', 5000);
+
+        return of({});
+      })
+    )),
+    map(() => new RegisterFinish())
   );
 
   @Effect({ dispatch: false })

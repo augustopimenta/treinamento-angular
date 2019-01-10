@@ -4,6 +4,10 @@ import PassSecurity from './pass-security.enum';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { Observable, of, timer } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../../reducers';
+import { RegisterStarted } from '../../auth.actions';
+import { selectAuthLoading } from '../../auth.selectors';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +20,8 @@ export class RegisterComponent implements AfterViewInit {
 
   form: FormGroup;
 
+  loading$ = this.store.pipe(select(selectAuthLoading));
+
   name = this.fb.control('', [ Validators.required ]);
   email = this.fb.control('', [ Validators.required, Validators.email ], [ this.uniqueEmail.bind(this) ]);
   password = this.fb.control('', [ Validators.required, RegisterComponent.strongPassword ]);
@@ -27,7 +33,7 @@ export class RegisterComponent implements AfterViewInit {
     map(pass => RegisterComponent.checkPasswordSecurity(pass))
   );
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private store: Store<AppState>) {
     this.form = this.fb.group({
       name: this.name,
       email: this.email,
@@ -81,6 +87,14 @@ export class RegisterComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.firstInput.nativeElement.focus();
+  }
+
+  onSubmit() {
+    if (this.form.invalid || this.form.pending) {
+      return;
+    }
+
+    this.store.dispatch(new RegisterStarted({ user: this.form.value }));
   }
 
 }

@@ -25,6 +25,12 @@ export function reducer(state = initialState, action: AuthActions): AuthState {
     case AuthActionTypes.LoginErrorAction:
       return { ...state, loading: false, authenticated: false };
 
+    case AuthActionTypes.RegisterStartedAction:
+      return { ...state, loading: true };
+
+    case AuthActionTypes.RegisterFinishAction:
+      return { ...state, loading: false };
+
     case AuthActionTypes.LogoutAction:
       return { ...initialState };
 

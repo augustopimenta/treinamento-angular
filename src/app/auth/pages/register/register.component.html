@@ -35,7 +35,9 @@
     <label class="form-check-label" for="is-admin">Sou administrador</label>
   </div>
   <br>
-  <button type="submit" [title]="(form.invalid || form.pending) ? 'Preencha todos os campos obrigatórios e corrija os erros de validação para continuar' : ''"  [disabled]="form.invalid || form.pending" class="btn btn-block btn-danger">Cadastrar</button>
+  <button type="submit" [title]="(form.invalid || form.pending) ? 'Preencha todos os campos obrigatórios e corrija os erros de validação para continuar' : ''"  [disabled]="(loading$ | async) || form.invalid || form.pending" class="btn btn-block btn-danger">
+    {{ (loading$ | async) ? 'Carregando...' : 'Cadastrar' }}
+  </button>
   <br>
   <span> Já tem cadastro? <a class="btn-link" routerLink="/entrar">Entrar!</a> </span>
 </form>
