@@ -2,21 +2,23 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import MonthResult from '../../models/month-result.model';
 import Purchase from '../../models/purchase.model';
 import { PurchaseModalComponent } from '../../components/purchase-modal/purchase-modal.component';
-import { AlertService } from '../../../core/services/alert.service';
-import { DialogService } from '../../../core/services/dialog.service';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
+import { RequestedPurchases } from '../../dashboard.actions';
+import { selectDashboardLoading, selectDashboardTotals } from '../../dashboard.selectors';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   user$ = this.store.pipe(select(selectAuthUser));
+  totals$ = this.store.pipe(select(selectDashboardTotals));
+  loading$ = this.store.pipe(select(selectDashboardLoading));
 
   selectedMonth = 0;
 
@@ -34,6 +36,10 @@ export class HomeComponent {
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
   constructor(private store: Store<AppState>) {}
+
+  ngOnInit() {
+    this.store.dispatch(new RequestedPurchases());
+  }
 
   onLogout() {
     this.store.dispatch(new Logout({ error: '' }));

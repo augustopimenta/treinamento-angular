@@ -1,11 +1,12 @@
+<app-loading *ngIf="loading$ | async"></app-loading>
 <app-header userPhoto="https://angular.io/assets/images/logos/angular/angular.svg" [userName]="(user$ | async).name" (logout)="onLogout()"></app-header>
 <main class="container">
   <div class="row">
     <div class="col-9">
       <app-months-panel [months]="months" [selectedMonthIndex]="selectedMonth"></app-months-panel>
     </div>
-    <div class="col-3" style="padding-left: 0">
-      <app-total-panel [total]="10" [pending]="5"></app-total-panel>
+    <div class="col-3" style="padding-left: 0" *ngIf="(totals$ | async) as totals" >
+      <app-total-panel [total]="totals.total" [pending]="totals.pending"></app-total-panel>
     </div>
   </div>
   <div class="row">

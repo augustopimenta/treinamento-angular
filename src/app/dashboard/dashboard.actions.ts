@@ -1,11 +1,19 @@
 import { Action } from '@ngrx/store';
+import Purchase from './models/purchase.model';
 
 export enum DashboardActionTypes {
-  LoadDashboards = '[Dashboard] Load Dashboards'
+  RequestedPurchasesAction = '[Dashboard Page] Requested Purchases Action',
+  FetchPurchasesAction = '[Dashboard Page] Fetch Purchases Action'
 }
 
-export class LoadDashboards implements Action {
-  readonly type = DashboardActionTypes.LoadDashboards;
+export class RequestedPurchases implements Action {
+  readonly type = DashboardActionTypes.RequestedPurchasesAction;
 }
 
-export type DashboardActions = LoadDashboards;
+export class FetchPurchases implements Action {
+  readonly type = DashboardActionTypes.FetchPurchasesAction;
+
+  constructor(public payload: { purchases: Purchase[] }) {}
+}
+
+export type DashboardActions = RequestedPurchases | FetchPurchases;
