@@ -5,13 +5,15 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
-import { ChangeSelectedMonth, RequestedPurchases } from '../../dashboard.actions';
+import { ChangeSelectedMonth, CreatePurchase, RequestedPurchases } from '../../dashboard.actions';
 import {
   selectDashboardLoading,
   selectDashboardMonthGroups,
   selectDashboardSelectedMonth, selectDashboardSelectedPurchases,
   selectDashboardTotals
 } from '../../dashboard.selectors';
+import { PurchasesService } from '../../services/purchases.service';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-home',
@@ -29,9 +31,11 @@ export class HomeComponent implements OnInit {
   selectedMonth$ = this.store.pipe(select(selectDashboardSelectedMonth));
   purchases$ = this.store.pipe(select(selectDashboardSelectedPurchases(this.today)));
 
+  loading = false;
+
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private purchasesService: PurchasesService, private alert: AlertService) {}
 
   ngOnInit() {
     this.store.dispatch(new RequestedPurchases());
@@ -49,8 +53,16 @@ export class HomeComponent implements OnInit {
     this.purchaseModal.show();
   }
 
-  finishNewPurchase(purchase: Purchase) {
-    console.log(purchase);
+  finishPurchase(purchase: Purchase) {
+    this.purchasesService.create(purchase).subscribe(createdPurchase => {
+      this.store.dispatch(new CreatePurchase({ purchase: createdPurchase }));
+
+      this.alert.success('Compra criada!', 3000);
+
+      this.purchaseModal.hide();
+    }, () => {
+      this.alert.error('Não foi possível criar a compra', 5000);
+    });
   }
 
 }

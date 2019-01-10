@@ -114,6 +114,10 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
+
     this.finishPurchase.emit(this.form.value);
   }
 

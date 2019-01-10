@@ -20,4 +20,8 @@ export class PurchasesService {
     return this.http.get<Purchase[]>(`${this.baseApiUrl}/v1/purchases`);
   }
 
+  create(purchase: Purchase) {
+    return this.http.post<Purchase>(`${this.baseApiUrl}/v1/purchases`, purchase);
+  }
+
 }

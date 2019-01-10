@@ -24,6 +24,9 @@ export function reducer(state = initialState, action: DashboardActions): Dashboa
     case DashboardActionTypes.ChangeSelectedMonthAction:
       return { ...state, selectedMonthIndex: action.payload.index };
 
+    case DashboardActionTypes.CreatePurchaseAction:
+      return { ...state, purchases: [ ...state.purchases, action.payload.purchase ] };
+
     default:
       return state;
   }

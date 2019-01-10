@@ -5,6 +5,7 @@ export enum DashboardActionTypes {
   RequestedPurchasesAction = '[Dashboard Page] Requested Purchases Action',
   FetchPurchasesAction = '[Dashboard Page] Fetch Purchases Action',
   ChangeSelectedMonthAction = '[Dashboard Page] Change Selected Month Action',
+  CreatePurchaseAction = '[Purchase Modal] Create Purchase Action'
 }
 
 export class RequestedPurchases implements Action {
@@ -23,4 +24,10 @@ export class ChangeSelectedMonth implements Action {
   constructor(public payload: { index: number }) {}
 }
 
-export type DashboardActions = RequestedPurchases | FetchPurchases | ChangeSelectedMonth;
+export class CreatePurchase implements Action {
+  readonly type = DashboardActionTypes.CreatePurchaseAction;
+
+  constructor(public payload: { purchase: Purchase }) {}
+}
+
+export type DashboardActions = RequestedPurchases | FetchPurchases | ChangeSelectedMonth | CreatePurchase;
