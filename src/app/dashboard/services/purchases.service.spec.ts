@@ -5,8 +5,10 @@ import { PurchasesService } from './purchases.service';
 describe('PurchasesService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: PurchasesService = TestBed.get(PurchasesService);
-    expect(service).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   const service: PurchasesService = TestBed.get(PurchasesService);
+  //   expect(service).toBeTruthy();
+  // });
+
+  it('TODO');
 });
