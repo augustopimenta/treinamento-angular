@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthComponent } from './auth.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -8,6 +9,7 @@ describe('AuthComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ AuthComponent ]
     })
     .compileComponents();
@@ -19,9 +21,7 @@ describe('AuthComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
-
-  it('TODO');
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
