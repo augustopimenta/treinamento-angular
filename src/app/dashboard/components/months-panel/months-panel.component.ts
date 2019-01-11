@@ -9,7 +9,7 @@ import SelectedMonth from './selected-month.model';
 })
 export class MonthsPanelComponent {
 
-  @Input() months: MonthResult;
+  @Input() months: MonthResult[];
   @Input() selectedMonthIndex: number;
 
   @Output() select = new EventEmitter<SelectedMonth>();
