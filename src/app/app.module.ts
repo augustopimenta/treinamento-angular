@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/auth.effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auth/interceptors/AuthInterceptor';
+import { AuthInterceptor } from './auth/interceptors/auth-interceptor';
 
 registerLocaleData(locale);
 
