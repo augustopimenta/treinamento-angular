@@ -1,4 +1,4 @@
-<app-modal header="Adicionar" [closeable]="true" (closeFinished)="onModalFinishedClose()" (openFinished)="onModalFinishedOpen()">
+<app-modal [header]="id ? 'Editar' : 'Adicionar'" [closeable]="true" (closeFinished)="onModalFinishedClose()" (openFinished)="onModalFinishedOpen()">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
     <small>* Campos obrigatórios</small>
     <div class="form-group">

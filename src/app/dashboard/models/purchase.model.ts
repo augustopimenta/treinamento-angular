@@ -1,5 +1,5 @@
 interface Purchase {
-  id?: number;
+  id?: string;
   date: string;
   description: string;
   paid: boolean;

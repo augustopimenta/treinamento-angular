@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <div class="col-md">
-      <app-purchases-panel (addPurchase)="startNewPurchase()" [purchases]="purchases$ | async"></app-purchases-panel>
+      <app-purchases-panel (updatePurchase)="startUpdatePurchase($event)" (addPurchase)="startNewPurchase()" [purchases]="purchases$ | async"></app-purchases-panel>
     </div>
   </div>
 </main>

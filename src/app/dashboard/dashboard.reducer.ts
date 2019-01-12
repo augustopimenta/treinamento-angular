@@ -27,6 +27,17 @@ export function reducer(state = initialState, action: DashboardActions): Dashboa
     case DashboardActionTypes.CreatePurchaseAction:
       return { ...state, purchases: [ ...state.purchases, action.payload.purchase ] };
 
+    case DashboardActionTypes.UpdatePurchaseAction:
+      const purchaseIndex = state.purchases.findIndex(purchase => purchase.id === action.payload.purchase.id);
+      return {
+        ...state,
+        purchases: [
+          ...state.purchases.slice(0, purchaseIndex),
+          { ...state.purchases[purchaseIndex], ...action.payload.purchase },
+          ...state.purchases.slice(purchaseIndex + 1)
+        ]
+      };
+
     default:
       return state;
   }

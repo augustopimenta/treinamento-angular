@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { Logout } from '../../../auth/auth.actions';
 import { selectAuthUser } from '../../../auth/auth.selectors';
-import { ChangeSelectedMonth, CreatePurchase, RequestedPurchases } from '../../dashboard.actions';
+import { ChangeSelectedMonth, CreatePurchase, RequestedPurchases, UpdatePurchase } from '../../dashboard.actions';
 import {
   selectDashboardLoading,
   selectDashboardMonthGroups,
@@ -31,8 +31,6 @@ export class HomeComponent implements OnInit {
   selectedMonth$ = this.store.pipe(select(selectDashboardSelectedMonth));
   purchases$ = this.store.pipe(select(selectDashboardSelectedPurchases(this.today)));
 
-  loading = false;
-
   @ViewChild(PurchaseModalComponent) purchaseModal: PurchaseModalComponent;
 
   constructor(private store: Store<AppState>, private purchasesService: PurchasesService, private alert: AlertService) {}
@@ -53,16 +51,32 @@ export class HomeComponent implements OnInit {
     this.purchaseModal.show();
   }
 
-  finishPurchase(purchase: Purchase) {
-    this.purchasesService.create(purchase).subscribe(createdPurchase => {
-      this.store.dispatch(new CreatePurchase({ purchase: createdPurchase }));
+  startUpdatePurchase(purchase: Purchase) {
+    this.purchaseModal.show(purchase);
+  }
 
-      this.alert.success('Compra criada!', 3000);
+  finishPurchase(data: Purchase) {
+    if (data.id) {
+      this.purchasesService.update(data).subscribe(purchase => {
+        this.store.dispatch(new UpdatePurchase({ purchase }));
 
-      this.purchaseModal.hide();
-    }, () => {
-      this.alert.error('Não foi possível criar a compra', 5000);
-    });
+        this.alert.success('Compra editada!', 3000);
+
+        this.purchaseModal.hide();
+      }, () => {
+        this.alert.error('Não foi possível editar a compra', 5000);
+      });
+    } else {
+      this.purchasesService.create(data).subscribe(purchase => {
+        this.store.dispatch(new CreatePurchase({ purchase }));
+
+        this.alert.success('Compra criada!', 3000);
+
+        this.purchaseModal.hide();
+      }, () => {
+        this.alert.error('Não foi possível criar a compra', 5000);
+      });
+    }
   }
 
 }

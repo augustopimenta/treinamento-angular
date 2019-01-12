@@ -22,6 +22,7 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
   private subscription: Subscription;
+  private id?: string = null;
 
   date = this.fb.control('', [ Validators.required ]);
   description = this.fb.control('', [ Validators.required ]);
@@ -88,7 +89,20 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  show() {
+  show(purchase: Purchase = null) {
+    if (purchase) {
+      this.id = purchase.id;
+
+      this.form.setValue({
+        date: purchase.date,
+        description: purchase.description,
+        quantity: purchase.quantity,
+        value: purchase.value,
+        total: purchase.total,
+        paid: purchase.paid
+      });
+    }
+
     this.modal.show();
   }
 
@@ -99,10 +113,13 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
   onModalFinishedOpen() {
     this.firstInput.nativeElement.focus();
 
-    this.date.setValue(moment().format('YYYY-MM-DD'));
+    if (!this.id) {
+      this.date.setValue(moment().format('YYYY-MM-DD'));
+    }
   }
 
   onModalFinishedClose() {
+    this.id = null;
     this.form.reset({
       date: '',
       description: '',
@@ -118,7 +135,7 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.finishPurchase.emit(this.form.value);
+    this.finishPurchase.emit({ ...this.form.value, id: this.id });
   }
 
 }

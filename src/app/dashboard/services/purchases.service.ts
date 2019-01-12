@@ -24,4 +24,8 @@ export class PurchasesService {
     return this.http.post<Purchase>(`${this.baseApiUrl}/v1/purchases`, purchase);
   }
 
+  update(purchase: Purchase) {
+    return this.http.post<Purchase>(`${this.baseApiUrl}/v1/purchases/${purchase.id}`, purchase);
+  }
+
 }
