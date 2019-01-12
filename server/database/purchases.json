@@ -1,42 +1,182 @@
 [
   {
     "user_id": "fe7994fe0e044117acca135137518a20",
-    "date": "2019-01-05",
-    "description": "Salgado do Ragghi",
-    "value": 1,
-    "quantity": 1,
-    "total": 1,
-    "paid": true,
+    "date": "2019-01-03",
+    "description": "Esfirra (Ragghi)",
+    "value": 3,
+    "quantity": "2",
+    "total": 6,
+    "paid": false,
     "_id": "3ca5d9e83d7b4dc187303d7fff8e93fc"
   },
   {
     "user_id": "fe7994fe0e044117acca135137518a20",
-    "date": "2019-01-01",
-    "description": "Pão de Queijo",
-    "value": 1.5,
+    "date": "2019-01-03",
+    "description": "Pão de Queijo (Luana)",
+    "value": 2,
     "quantity": 2,
-    "total": 3,
-    "paid": true,
+    "total": 4,
+    "paid": false,
     "_id": "c25ec77b73e041c9af608b7bdf18b4c3"
   },
   {
     "user_id": "fe7994fe0e044117acca135137518a20",
-    "date": "2019-01-06",
-    "description": "Brownie do Zé",
-    "value": 1,
-    "quantity": 3,
-    "total": 3,
-    "paid": true,
+    "date": "2019-01-07",
+    "description": "Brownie do Zé (Ragghi)",
+    "value": 5,
+    "quantity": "1",
+    "total": 5,
+    "paid": false,
     "_id": "9e0887c1314b40b88546eff8d252ac00"
   },
   {
     "user_id": "fe7994fe0e044117acca135137518a20",
-    "date": "2019-01-06",
-    "description": "Pão recheado do Ragghi",
+    "date": "2019-01-07",
+    "description": "Pão recheado (Ragghi)",
     "value": 4,
     "quantity": 1,
     "total": 4,
-    "paid": true,
+    "paid": false,
     "_id": "34a100d44b6047f5a898f0ce457e3cb3"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2019-01-11",
+    "description": "Pavê (Ragghi)",
+    "value": 4,
+    "quantity": 1,
+    "total": 4,
+    "paid": false,
+    "_id": "973e16771efd4222abeaacdd138a4c84"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-12",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be21"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-13",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be22"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-14",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be23"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-16",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be24"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-19",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be25"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-21",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be26"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-22",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be27"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-23",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be28"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-26",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be29"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-27",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be30"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-28",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be31"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-29",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": true,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be32"
+  },
+  {
+    "user_id": "fe7994fe0e044117acca135137518a20",
+    "date": "2018-11-30",
+    "description": "Pão de Queijo (Taui)",
+    "value": 1.5,
+    "quantity": "2",
+    "total": 3,
+    "paid": false,
+    "_id": "ca4bd1d7d8ae48448669ab50c2e3be33"
   }
 ]
