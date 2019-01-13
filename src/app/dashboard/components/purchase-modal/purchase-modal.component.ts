@@ -20,9 +20,9 @@ export class PurchaseModalComponent implements OnInit, OnDestroy {
   @Output() finishPurchase = new EventEmitter<Purchase>();
 
   form: FormGroup;
+  id?: string = null;
 
   private subscription: Subscription;
-  private id?: string = null;
 
   date = this.fb.control('', [ Validators.required ]);
   description = this.fb.control('', [ Validators.required ]);
