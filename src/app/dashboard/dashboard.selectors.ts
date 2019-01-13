@@ -10,16 +10,6 @@ export const selectDashboardLoading = createSelector(
   state => state.loading
 );
 
-export const selectDashboardTotals = createSelector(
-  selectDashboardState,
-  state => sumPurchases(state.purchases)
-);
-
-export const selectDashboardSelectedMonth = createSelector(
-  selectDashboardState,
-  state => state.selectedMonthIndex
-);
-
 const sumPurchases = (purchases: Purchase[]) => {
   return purchases.reduce((totals, purchase) => {
     const purchaseTotal = purchase.value * purchase.quantity;
@@ -31,6 +21,16 @@ const sumPurchases = (purchases: Purchase[]) => {
     };
   }, { total: 0, pending: 0 });
 };
+
+export const selectDashboardTotals = createSelector(
+  selectDashboardState,
+  state => sumPurchases(state.purchases)
+);
+
+export const selectDashboardSelectedMonth = createSelector(
+  selectDashboardState,
+  state => state.selectedMonthIndex
+);
 
 export const selectDashboardMonthGroups = (start: Date) => {
   return createSelector(
