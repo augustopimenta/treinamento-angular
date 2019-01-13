@@ -1,0 +1,12 @@
+{
+  "name": "front-server",
+  "version": "1.0.0",
+  "description": "Servidor para static files e redirect de SPAs",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
