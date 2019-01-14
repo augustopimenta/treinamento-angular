@@ -34,7 +34,7 @@ export class AuthEffects {
         if (data.status > 0 && data.error) {
           error = data.error.error;
         } else {
-          error = 'Não foi possivel autenticar, um erro ocerreu!';
+          error = 'Não foi possivel autenticar, um erro ocorreu!';
         }
 
         return of({ error });
