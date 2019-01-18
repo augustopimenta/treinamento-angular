@@ -6,6 +6,10 @@ Projeto para demonstração das funcionalidades e técnicas de desenvolvimento u
 
 O sistema é um gerenciador de despesas simples para o mercado interno da empresa (Com pão de queijo, brownie, salgados, etc...), para você saber o quando está gastando com comida!
 
+## Login padrão
+* **e-mail:**  admin@admin.com
+* **senha:** admin
+
 ## Olhada rápida
 
 Existe um container do Docker pronto com a aplicação final, para isso execute o comando em seu terminal (com o docker já instalado)
@@ -169,5 +173,3 @@ Navegue para outro branch(Já tendo o branch localmente):
 ````sh
 git checkout <nome-branch>
 ````
- 
-:)
